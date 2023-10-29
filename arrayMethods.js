@@ -24,7 +24,10 @@ console.log(onlyStrings);
 // 4. only strings that begins with "a"
 const words2 = ["apple", "banana", "apricot", "grape", "avocado", "kiwi"];
 const beginsWithA = words2.filter((word) => word[0] === "a");
+//or
+const beginsWithA2 = words2.filter((word) => word.startsWith("a"));
 console.log(beginsWithA);
+console.log(beginsWithA2);
 
 //  5. only strings that not include "e"
 const words3 = ["apple", "banana", "cherry", "date", "fig", "grape", "kiwi"];
@@ -51,44 +54,53 @@ console.log(noDuplicates);
 
 //better solution
 const duplicates2 = [1, 2, 3, 2, 4, 5, 5, 6, 7, 8];
-let objNums={};
-let filtred=[];
+let objNums = {};
+let filtred = [];
 for (const num of duplicates2) {
-  if(!objNums[num]){
+  if (!objNums[num]) {
     filtred.push(num);
-    objNums[num]=true;
+    objNums[num] = true;
   }
 }
 console.log(filtred);
 
+//the best solution
+const duplicates3 = [1, 2, 3, 2, 4, 5, 5, 6, 7, 8];
+const uniqueSet = new Set(duplicates3);
+const uniqueArray = Array.from(uniqueSet);
+console.log(uniqueArray);
+
 // 2.1 add exclamation mark
 const words4 = ["hello", "world", "javascript"];
-let exclamation = words4.map(word=>word+"!");
+let exclamation = words4.map((word) => word + "!");
 console.log(exclamation);
-
 
 // 2.2  add numeration 1. Apple etc.
 const words1 = ["apple", "banana", "cherry"];
-let count=1;
-let numeration = words1.map(word=>`${count++}. `+ word);
+let numeration = words1.map(
+  (word, index) =>
+    `${index + 1}. ${word.charAt(0).toUpperCase() + word.slice(1)}`
+);
 console.log(numeration);
 
 // 2.3 make all nums positive
 const numbers3 = [1, -2, 3, -4, 5];
-let positiveNums = numbers3.map(num=>Math.abs(num));
+let positiveNums = numbers3.map((num) => Math.abs(num));
 console.log(positiveNums);
 
 // 2.4 make it all strings
 const numbers4 = [5, 10, 15, 20];
-let stringNums = numbers4.map(num=>num.toString());
+let stringNums = numbers4.map((num) => num.toString());
 console.log(stringNums);
 
 // 2.5 multiply each element by his Index
 const numbers5 = [1, 2, 3, 4, 5];
-let multiplyByIndex = numbers5.map((num, index)=>num*index);
+let multiplyByIndex = numbers5.map((num, index) => num * index);
 console.log(multiplyByIndex);
 
 // 2.6  add 10 to a number if its index is a multiple of 3
 const numbers6 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-let add10ifIndexDividableBy3 = numbers6.map((num, index)=>index%3===0?num+10:num);
+let add10ifIndexDividableBy3 = numbers6.map((num, index) =>
+  index % 3 === 0 ? num + 10 : num
+);
 console.log(add10ifIndexDividableBy3);
